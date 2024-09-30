@@ -15,19 +15,40 @@ const testUrl = 'http://a.b/\tbc\ndr\ref g"hq\'j<kl>?mn\\op^q=r`99{st|uv}wz';
 // Create a test suite
 benchmark.createSuite("Compare escape url functions", { time: 1000, description: "Compare escape functions" })
   .add("Map + new function", () => {
-    return newEscape(testUrl);
+    let rez=''
+    for(let i = 0; i<10000;i++){
+      rez = newEscape(testUrl);
+    }
+    return rez;
   })
   .add("Array + new function", () => {
-    return newEscape2(testUrl);
+    let rez=''
+    for(let i = 0; i<10000;i++){
+      rez = newEscape2(testUrl);
+    }
+    return rez;
   })
   .add("Map + old function", () => {
-    return newEscape3(testUrl);
+    let rez=''
+    for(let i = 0; i<10000;i++){
+      rez = newEscape3(testUrl);
+    }
+    return rez;
+
   })
   .add("Map + cicle from string", () => {
-    return newEscape4(testUrl);
+    let rez=''
+    for(let i = 0; i<10000;i++){
+      rez = newEscape4(testUrl);
+    }
+    return rez;
+
   })
   .ref("Original", () => {
-    return oldEscape(testUrl);
+    let rez=''
+    for(let i = 0; i<10000;i++){
+      rez = oldEscape(testUrl);
+    }
+    return rez;
   });
-
 benchmark.run();
